@@ -46,7 +46,7 @@ MACRO(ODB_GENERATE dbtype header)
 			COMMAND odb
 			--profile boost/smart-ptr
 			--profile boost/date-time
-			--std c++11
+			--std c++17
 			-m dynamic
 			-d common
 			-d ${dbtype}
@@ -89,7 +89,7 @@ MACRO(ODB_GENERATE_DB dbtype dbschema)
 			COMMAND odb
 			--profile boost/smart-ptr
 			--profile boost/date-time
-			--std c++11
+			--std c++17
 			-m dynamic
 			-d common
 
@@ -132,13 +132,13 @@ if (NOT "$ENV{DOCKER_BUILD}" STREQUAL "")
 	# Docker: Disabilita l'ottimizzazione (-O0), definisce env_vagrant,
 	# e AGGIUNGE -DNDEBUG per disattivare le istruzioni assert() (handler.cpp crash).
 	message(STATUS "DOCKER BUILD: Setting CXX flags to -O0, defining env_vagrant, and disabling assertions (NDEBUG).")
-	set(CMAKE_CXX_FLAGS "-std=c++11 -ggdb3 -pipe -pg -O0 -Denv_vagrant -DNDEBUG")
-	set(CMAKE_C_FLAGS "-std=c++11 -ggdb3 -pipe -pg -O0 -Denv_vagrant -DNDEBUG")
+	set(CMAKE_CXX_FLAGS "-std=c++17 -ggdb3 -pipe -pg -O0 -Denv_vagrant -DNDEBUG")
+set(CMAKE_C_FLAGS "-std=c++17 -ggdb3 -pipe -pg -O0 -Denv_vagrant -DNDEBUG")
 else()
 	# Vagrant/Locale: Usa i flag di ottimizzazione originali (compatibilità)
 	message(STATUS "VAGRANT BUILD: Using original optimization flags.")
-	set(CMAKE_CXX_FLAGS "-std=c++11 -ggdb3 -finline-functions -fno-strength-reduce -pipe -pg")
-	set(CMAKE_C_FLAGS "-std=c++11 -ggdb3 -finline-functions -fno-strength-reduce -pipe -pg")
+	set(CMAKE_CXX_FLAGS "-std=c++17 -ggdb3 -finline-functions -fno-strength-reduce -pipe -pg")
+set(CMAKE_C_FLAGS "-std=c++17 -ggdb3 -finline-functions -fno-strength-reduce -pipe -pg")
 endif()
 # FINE LOGICA CONDIZIONALE
 

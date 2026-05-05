@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:22.04
 
 # Imposta variabili d'ambiente per installazioni non interattive
 ENV DEBIAN_FRONTEND=noninteractive
@@ -10,7 +10,7 @@ RUN echo "mysql-server mysql-server/root_password password secret" | debconf-set
 # 2. Installazione dipendenze e creazione utente 'vagrant'
 RUN apt-get update && \
     apt-get install -y \
-        sudo git php7.2-cli g++ apache2 make cmake libconfig++-dev lnav libsqlite3-dev libcurlpp-dev gdb \
+        sudo git php8.1-cli g++-12 apache2 make cmake libconfig++-dev lnav libsqlite3-dev libcurlpp-dev gdb \
         libcurl4-openssl-dev libboost-dev libboost-program-options-dev libboost-system-dev \
         libboost-filesystem-dev liblog4cxx-dev libboost-date-time-dev \
         odb libodb-dev libodb-mysql-dev libodb-sqlite-dev libodb-boost-dev \
